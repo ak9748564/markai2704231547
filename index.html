@@ -1,0 +1,461 @@
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("location: login.php");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="input.css">
+    <title>Markai</title>
+</head>
+<body style="font-family: 'Poppins', sans-serif;" class="bg-[#0F0B30]">
+<!-- navbar -->
+    <div class="w-full h-[70px] flex items-center justify-center px-6 fixed navbar">
+        <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px] xl:w-[1280px] flex items-center justify-between">
+          <p class="text-[24px] text-white font-bold font-sans cursor-pointer">Markai</p>
+          <ul class="text-white hidden lg:flex">
+            <li class="font-normal mx-4 text-[14px]"><a href="">Features</a></li>
+            <li class="font-normal mx-4 text-[14px]"><a href="">Products</a></li>
+            <li class="font-normal mx-4 text-[14px]"><a href="">Company</a></li>
+            <li class="font-normal mx-4 text-[14px]"><a href="">Pricing</a></li>
+            <li class="font-normal mx-4 text-[14px]"><a href="">Support</a></li>
+          </ul>
+          <div class="items-center text-white hidden lg:flex">
+            <div class="mx-2 px-2 py-1 text-[14px] font-bold"><a href="<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {echo 'Logout';}else{echo 'Login';}?>.php">
+<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {echo "Logout";}else{echo "Login";}?>
+</a></div>
+            <div class="mx-2 p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A]">
+                <div class="px-4 py-1 bg-[#7f0782] hover:bg-transparent hover:transition-colors rounded-full cursor-pointer">
+                <a href="register.php">Register</a>
+                </div>
+            </div>
+          </div>
+          <div class="w-[30px] h-[30px] menu_icon lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list fill-slate-200" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+          </div>
+        </div>
+    </div>
+
+    <!-- mobile menu  -->
+    <div class="w-full bg-black/40 backdrop-blur-sm h-full top-[70px] left-[-100%] fixed z-2 p-4 mobile_menu">
+        <ul class="text-white text-center">
+            <li class="font-normal  text-[18px] my-2 close_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x " viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </li>
+            <li class="font-normal  text-[18px] my-2"><a href="">Features</a></li>
+            <li class="font-normal  text-[18px] my-2"><a href="">Products</a></li>
+            <li class="font-normal  text-[18px] my-2"><a href="">Company</a></li>
+            <li class="font-normal  text-[18px] my-2"><a href="">Pricing</a></li>
+            <li class="font-normal  text-[18px] my-2"><a href="">Support</a></li>
+            <div class="px-2 py-1 text-[14px] font-bold text-center mb-2"><a href="<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {echo 'Logout';}else{echo 'Login';}?>.php">
+<?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {echo "Logout";}else{echo "Login";}?>
+                </a></div>
+            <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] text-center">
+                <div class="px-4 py-1 bg-[#7f0782] hover:bg-transparent hover:transition-colors rounded-full cursor-pointer">
+                <a href="register.php">Register</a>
+                </div>
+            </div>
+          </ul>
+    </div>
+
+    <!-- let ai your help -->
+    <div class="bg-gradient-to-r from-[#044396] to-[#7f0782]">
+    <div class="h-[100vh] w-full px-6 bg-gradient-to-t from-[#070f30] to-[#00000000] ">
+        <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px] xl:w-[1280px] flex items-center justify-center">
+                <div class="text-center text-white mt-[80px]">
+                    <p class="text-white text-[22px] sm:text-[30px]">Let Ai help your</p>
+                    <h1 class="font-bold text-[35px] sm:text-[60px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">MARKETING TEAM</h1>
+                    <p class="text-white max-w-[300px] m-auto text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus odio tempor rutrum condimentum viverra ornare. Gravida tellus ut venenatis.</p>
+                    <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] m-auto w-[120px] mt-5">
+                        <div class="px-4 py-1 bg-[#0F0B30] hover:bg-transparent hover:transition-colors rounded-full text-white w-[118px] text-[18px]">
+                        <a href="">Let's go</a>
+                        </div>
+                    </div>
+                    <div class="h-[80px] w-[80px] m-auto mt-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+                          </svg>
+                    </div>
+                </div> 
+        </div>
+    </div>
+    </div> 
+
+    <!-- make your marketing -->
+    <div class="w-full px-6 py-12">
+        <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px] md:flex items-center m-auto">
+             <div class="md:w-1/2  mt-10 md:mt-0"><img src="images/robot.png" alt="" class="w-full"></div>
+             <div class="md:w-1/2">
+                <h1 class="font-bold text-[25px] sm:text-[40px] bg-gradient-to-r from-[#00F0FF] to-[#ff00ff] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Make your marketing  completely based on Artificial Intelligence </h1>
+             </div>
+        </div>
+    </div>
+
+    <!-- Explore the features -->
+<div class="w-full px-3 py-12">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto">
+        <h1 class="font-bold text-[22px] sm:text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] max-w-[380px]" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Explore the features!</h1>
+        <p class="text-white max-w-[450px] text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus odio tempor rutrum condimentum viverra ornare</p>
+
+        <div class="my-12">
+            <div class="md:flex">
+                <div class="md:w-1/3 p-[1px] m-4 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl  hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="px-6 py-12 bg-[#1F1B42] rounded-xl">
+                         <img src="images/globe.png" alt="" class="w-[50px] h-[50px]">
+                         <p class="text-white text-[22px] font-semibold mt-2">Create Ai Based Website</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-4 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="px-6 py-12 bg-[#1F1B42] rounded-xl">
+                         <img src="images/search.png" alt="" class="w-[50px] h-[50px]">
+                         <p class="text-white text-[22px] font-semibold mt-2">Write SEO Friendly Contents</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-4 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="px-6 py-12 bg-[#1F1B42] rounded-xl">
+                         <img src="images/gear.png" alt="" class="w-[50px] h-[50px]">
+                         <p class="text-white text-[22px] font-semibold mt-2">Maintain site with Artificial Intelligence</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:flex">
+                <div class="md:w-1/3 p-[1px] m-4 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="px-6 py-12 bg-[#1F1B42] rounded-xl">
+                         <img src="images/stats.png" alt="" class="w-[50px] h-[50px]">
+                         <p class="text-white text-[22px] font-semibold mt-2">Create Ai Based Website</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-4 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="px-6 py-12 bg-[#1F1B42] rounded-xl">
+                         <img src="images/computer.png" alt="" class="w-[50px] h-[50px]">
+                         <p class="text-white text-[22px] font-semibold mt-2">Write SEO Friendly Contents</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-4 rounded-xl">
+                    <div class="px-6 py-12  rounded-xl">
+                         
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div> 
+
+<!-- let's introduce yourself -->
+<div class="w-full px-6 py-12 text-center">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto">
+        <p class="text-white text-[15px]">Let's introduce with</p>
+        <h1 class="font-bold text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Your Writing Partner!</h1>
+        <p class="text-white max-w-[380px] m-auto text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus odio tempor rutrum </p>
+    </div> 
+</div> 
+
+<!-- Custom Interface -->
+<div class="w-full px-4 py-12">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto md:flex items-center">
+        <div class="md:w-1/2 border-l-4 border-white px-5 sm:px-12">
+            <p class="text-white text-[15px]">What is</p>
+            <h1 class="font-bold text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Custom Interface</h1>
+            <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+            <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[140px] mt-5">
+                <div class="px-4 py-1 bg-[#0F0B30] hover:bg-transparent rounded-full text-white w-[138px] text-[15px] text-center hover:transition-colors">
+                <a href="">Learn More...</a>
+                </div>
+            </div>
+        </div>
+        <div class="md:w-1/2 mt-10 md:mt-0">
+             <img src="images/custom_interface.png" alt="" class="w-full">
+        </div>
+    </div> 
+</div> 
+
+<!-- You can maintain -->
+<div class="w-full px-4 py-12">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto md:flex items-center">
+        <div class="md:w-1/2">
+             <img src="images/website_with_ai.png" alt="" class="w-full">
+        </div>
+        <div class="md:w-1/2 border-l-4 border-white px-5 sm:px-12">
+            <p class="text-white text-[15px]">You can maintain your</p>
+            <h1 class="font-bold text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Website with Ai</h1>
+            <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+            <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[140px] mt-5">
+                <div class="px-4 py-1 bg-[#0F0B30] hover:bg-transparent rounded-full text-white w-[138px] text-[15px] text-center hover:transition-colors">
+                <a href="">Learn More...</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+<!-- Increase you sales -->
+<div class="w-full px-3 py-12">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px] m-auto">
+        <div class="">
+            <div class="p-[2px] text-[14px] font-bold rounded-2xl bg-gradient-to-r from-[#00F0FF] to-[#FF007A] mt-5 hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                <div class="sm:px-[70px] sm:py-12 px-5 py-3 bg-[#0F0B30] rounded-2xl text-white  text-[15px]">
+            <h1 class="font-bold text-[25px] sm:text-[40px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Increase your sales by analysing your collected data!</h1>
+            <p class="text-white   text-[13px] mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+            <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[140px] mt-5">
+                <div class="px-4 py-1 bg-[#0F0B30] hover:bg-transparent rounded-full text-white w-[138px] text-[15px] text-center hover:transition-colors">
+                <a href="">Learn More...</a>
+                </div>
+            </div>
+                </div>
+                </div>
+
+        </div>
+    </div> 
+</div> 
+
+<!-- Explore the features -->
+<div class="w-full px-3 py-12">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto">
+        <h1 class="font-bold text-[25px] sm:text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] max-w-[380px] m-auto text-center" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Our Customer's Reviews</h1>
+        
+
+        <div class="my-12">
+            <div class="md:flex">
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px] m-auto" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Saul Ramirez</h1>
+                                <p class="text-white text-[13px] font-normal">CEO, Mirrorly</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px]" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Isiah Walls</h1>
+                                <p class="text-white text-[13px] font-normal">Marketing Lead, Zamora</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px] " style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Forest Barrera</h1>
+                                <p class="text-white text-[13px] font-normal">Managing Director, Teri</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+            </div>
+            <div class="md:flex">
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px]" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Ruby Schwartz</h1>
+                                <p class="text-white text-[13px] font-normal">Marketing Int., Thornton</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px]" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Isaias Martinez</h1>
+                                <p class="text-white text-[13px] font-normal">Head of Marketing, Moore</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+                <div class="md:w-1/3 p-[1px] m-3 bg-gradient-to-r from-[#00F0FF] to-[#FF007A] rounded-xl hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                    <div class="p-6 bg-gradient-to-r from-[#0a3c41] to-[#1f1b42] rounded-xl">
+                        <p class="text-white   text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quam sit scelerisque enim in sed diam nec, blandit. Amet tellus massa sed iaculis. Mauris, curabitur scelerisque sagittis posuere mollis. In dolor neque et vitae lectus vulputate pellentesque luctus.</p>
+                        <div class="mt-5 flex items-center">
+                            <div class="mr-4"><img src="images/profile.png" alt="" class="min-w-[50px] min-h-[50px]"></div>
+                            <div>
+                                <h1 class="font-bold text-[15px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px] m-auto" style="-webkit-text-fill-color:transparent;-webkit-background-clip:text;">Deidre Braun</h1>
+                                <p class="text-white text-[13px] font-normal">CEO, Wilbert</p>
+                            </div>
+                        </div>
+                         
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div> 
+
+<!-- let's introduce yourself -->
+<div class="w-full px-3 py-12 text-center">
+    <div class="w-full h-full sm:w-[500px] md:w-[720px] lg:w-[950px]  m-auto">
+        <h1 class="font-bold text-[35px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Contact Us</h1>
+        <p class="text-white max-w-[380px] m-auto text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus odio tempor rutrum</p>
+
+        <form action="contact.php" method="get">
+            <div class="sm:flex mt-12">
+                <div class="p-[2px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] m-3   sm:w-1/2 hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                <div class="py-3 px-5 bg-[#0F0B30] rounded-full text-white  text-[15px]">
+                    <input type="text" class="bg-[#0F0B30] w-full outline-none" placeholder="Your Name" name="name">
+                </div>
+                </div>  
+                <div class="p-[2px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] m-3 sm:w-1/2 hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                <div class="py-3 px-5 bg-[#0F0B30] rounded-full text-white  text-[15px]">
+                    <input type="email" class="bg-[#0F0B30] w-full outline-none" placeholder="Your Email Address" name="email">
+                </div>
+                </div>  
+            </div>
+            <div class="p-[2px] text-[14px] font-bold rounded-3xl bg-gradient-to-r from-[#00F0FF] to-[#FF007A] m-3 hover:from-[#FF007A] hover:to-[#00F0FF] hover:transition-colors">
+                <div class="py-3 px-5 bg-[#0F0B30] rounded-3xl  text-white  text-[15px]">
+                    <textarea id="" cols="30" rows="10" class="bg-[#0F0B30] text-white  text-[15px] w-full outline-none" placeholder="Your Messages.." name="message"></textarea>
+                </div>
+            </div> 
+            <div class="p-[2px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[140px] m-auto mt-5">
+                <div class="px-4 py-1 bg-[#0F0B30] hover:bg-transparent rounded-full text-slate-400 hover:text-[#0f0b30] m-auto w-[136px] text-[22px] text-center hover:transition-colors">
+                <button name="send_message">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div> 
+</div>
+
+<footer class="px-4 py-[100px] bg-[#1b173a]">
+    <div class="lg:flex sm:w-[500px] md:w-[700px] lg:w-[980px] m-auto justify-between">
+        <div class="w-full lg:w-[400px] lg:pr-[100px]">
+            <h1 class="font-bold text-[50px] w-[190px] bg-gradient-to-r from-[#00F0FF] to-[#FF007A] " style="-webkit-text-fill-color:transparent; -webkit-background-clip:text;">Markai</h1>
+            <p class="text-white  text-[13px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas purus odio tempor rutrum</p>
+            <div class=" p-[1px] text-[14px] font-bold rounded-full bg-gradient-to-r from-[#00F0FF] to-[#FF007A] w-[120px] mt-5 text-center">
+                <div class="px-4 py-1 bg-[#1b173a] hover:bg-transparent hover:transition-colors rounded-full text-white w-[118px] text-[18px]">
+                <a href="">Let's go</a>
+                </div>
+            </div>
+            <div class="flex mt-5">
+                 <img src="images/linkedin.png" alt="" class="mr-2 w-[30px] h-[30px]">  
+                 <img src="images/facebook.png" alt="" class="w-[30px] h-[30px]">  
+                 <img src="images/cb.png" alt="" class="mx-2 w-[30px] h-[30px]">  
+                 <img src="images/instagram.png" alt="" class="w-[30px] h-[30px]">  
+                 <img src="images/twitter.png" alt="" class="ml-2 w-[30px] h-[30px]">  
+            </div>
+        </div>
+        <div class="w-full lg:w-[300px] mt-12 lg:mt-0">
+              <div class="flex justify-between">
+                <div class="">
+                <p class="text-white text-[20px]">Site</p>
+                <ul>
+                    <li><a href=""><p class="text-white  text-[14px]">Features</p></a></li>
+                    <li><a href=""><p class="text-white  text-[14px]">Products</p></a></li>
+                    <li><a href=""><p class="text-white  text-[14px]">Company</p></a></li>
+                    <li><a href=""><p class="text-white  text-[14px]">Pricing</p></a></li>
+                    <li><a href=""><p class="text-white  text-[14px]">Support</p></a></li>
+                </ul>
+                </div>
+                <div class="">
+                    <p class="text-white  text-[20px]">Legale</p>
+                    <ul>
+                        <li><a href=""><p class="text-white  text-[14px]">Privacy Policy</p></a></li>
+                        <li><a href=""><p class="text-white  text-[14px]">Terms & Conditions</p></a></li>
+                        <li><a href=""><p class="text-white  text-[14px]">Company Policy</p></a></li>
+                    </ul>
+                </div>
+              </div>
+              <div class="flex justify-between mt-0  md:mt-6">
+                <div class="">
+                    <p class="text-white  text-[20px]">Company</p>
+                    <ul>
+                        <li><a href=""><p class="text-white  text-[14px]">About us</p></a></li>
+                        <li><a href=""><p class="text-white  text-[14px]">Our team</p></a></li>
+                        <li><a href=""><p class="text-white  text-[14px]">Our Story</p></a></li>
+                        <li><a href=""><p class="text-white  text-[14px]">Career</p></a></li>
+                    </ul>
+                    </div>
+                    <div class="pl-3 sm:pl-0">
+                        <p class="text-white w-[155px] text-[20px]">Follow us on</p>
+                        <ul>
+                            <li><a href=""><p class="text-white  text-[14px]">Twitter</p></a></li>
+                            <li><a href=""><p class="text-white  text-[14px]">Facebook</p></a></li>
+                            <li><a href=""><p class="text-white  text-[14px]">Linkedin</p></a></li>
+                        </ul>
+                    </div>
+              </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+   var navbar = document.getElementsByClassName("navbar")[0];
+
+   window.addEventListener("scroll",function(){
+        if(window.scrollY > 10)
+        {
+            navbar.style.top = "-70px";
+            navbar.style.transition = "0.5s";
+            navbar.classList.add('bg-white/20');
+            navbar.classList.add('backdrop-blur-sm');
+        }
+        if(window.scrollY > 300)
+        {
+            navbar.style.top = "0px";
+            navbar.style.transition = "0.5s";
+            navbar.classList.add('bg-white/20');
+            navbar.classList.add('backdrop-blur-sm');
+        }
+        if(window.scrollY < 10)
+        {
+            navbar.style.top = "0px";
+            // navbar.style.transition = "0.5s";
+            navbar.classList.remove('bg-white/20');
+        }
+   });
+</script>
+<script>
+    var menu_icon = document.getElementsByClassName("menu_icon")[0];
+    var close_icon = document.getElementsByClassName("close_icon")[0];
+    var mobile_menu = document.getElementsByClassName("mobile_menu")[0];
+
+    menu_icon.onclick = function(){
+        mobile_menu.style.left = "0px";
+        mobile_menu.style.transition = "0.4s";
+    };
+    close_icon.onclick = function(){
+        mobile_menu.style.left = "-100%";
+        mobile_menu.style.transition = "0.4s";
+    };
+</script>
+</body>
+</html>
